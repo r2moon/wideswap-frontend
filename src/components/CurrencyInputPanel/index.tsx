@@ -28,21 +28,19 @@ const InputRow = styled.div`
   justify-content: space-between;
 `;
 
-const CurrencyInputPanel = () => {
-  return (
-    <InputPanel>
-      <Container>
-        <BalanceRow>
-          <div>From</div>
-          <div>Balance: 0</div>
-        </BalanceRow>
-        <InputRow>
-          <input placeholder="0.000000" />
-          <div>Balance: 0</div>
-        </InputRow>
-      </Container>
-    </InputPanel>
-  );
-};
+const CurrencyInputPanel = () => (
+  <InputPanel>
+    <Container>
+      <BalanceRow>
+        <div>From</div>
+        <div>Balance: 0</div>
+      </BalanceRow>
+      <InputRow>
+        <input placeholder="0.000000" />
+        <div>Balance: 0</div>
+      </InputRow>
+    </Container>
+  </InputPanel>
+);
 
 export default CurrencyInputPanel;

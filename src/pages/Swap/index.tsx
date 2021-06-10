@@ -1,5 +1,5 @@
 import styled, { ThemeContext } from "styled-components";
-import CurrencyInputPanel from "../../components/CurrencyInputPanel";
+import { CurrencyInputPanel } from "components";
 
 const StyledDiv = styled.div`
   background-color: rgb(247, 248, 250);
@@ -23,15 +23,13 @@ const SwapDiv = styled.div`
   padding: 20px;
 `;
 
-const Swap = () => {
-  return (
-    <StyledDiv>
-      <SwapDiv>
-        <div>Swap</div>
-        <CurrencyInputPanel />
-      </SwapDiv>
-    </StyledDiv>
-  );
-};
+const Swap = () => (
+  <StyledDiv>
+    <SwapDiv>
+      <div>Swap</div>
+      <CurrencyInputPanel />
+    </SwapDiv>
+  </StyledDiv>
+);
 
 export default Swap;
