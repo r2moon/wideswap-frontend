@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { SelectCurrencyModal } from "components";
+import { CurrencySelectModal } from "components";
 import { Currency } from "types";
 
 const SelectButton = styled.button`
@@ -45,7 +45,7 @@ const CurrencySelector = ({ currency, onSelectCurrency }: Props) => {
     <SelectButton onClick={openSelectDialog}>
       {currency && <CurrencySpan>{currency.symbol}</CurrencySpan>}
       {!currency && <CurrencySpan>Select a token</CurrencySpan>}
-      <SelectCurrencyModal
+      <CurrencySelectModal
         isOpen={showCurrencySelectDialog}
         onSelectCurrency={onSelectCurrency}
         onDismiss={dismissSelectDialog}

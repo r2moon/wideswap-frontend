@@ -72,7 +72,7 @@ const CurrencyInputPanel = ({ currency, isOffer, onSelectCurrency }: Props) => (
     <Container>
       <BalanceRow>
         <DirectionLabel>{isOffer ? "From" : "To"}</DirectionLabel>
-        <div>Balance: 0</div>
+        {currency && <div>Balance: 0</div>}
       </BalanceRow>
       <InputRow>
         <Input placeholder="0.000000" type="number" />

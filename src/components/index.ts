@@ -5,4 +5,4 @@ export { default as CurrencyInputPanel } from "./CurrencyInputPanel";
 export { default as Modal } from "./Modal";
 export { default as Header } from "./Header";
 export { default as CurrencySelector } from "./CurrencySelector";
-export { default as SelectCurrencyModal } from "./SelectCurrencyModal";
+export { default as CurrencySelectModal } from "./CurrencySelectModal";

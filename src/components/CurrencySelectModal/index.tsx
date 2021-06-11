@@ -69,7 +69,7 @@ type Props = {
   onDismiss: () => void;
 };
 
-const SelectCurrencyModal = ({
+const CurrencySelectModal = ({
   isOpen,
   onSelectCurrency,
   onDismiss,
@@ -105,4 +105,4 @@ const SelectCurrencyModal = ({
   );
 };
 
-export default SelectCurrencyModal;
+export default CurrencySelectModal;
