@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { ConnectWalletModal } from "components";
 import { useAddress } from "hooks";
@@ -19,13 +19,13 @@ const ConnectButton = () => {
   const [showConnectWalletModal, setShowConnectWalletModal] =
     useState<boolean>(false);
 
-  const connectHandler = () => {
+  const connectHandler = useCallback(() => {
     if (address) {
       console.log("connected");
     } else {
       setShowConnectWalletModal(true);
     }
-  };
+  }, [address]);
 
   return (
     <StyledConnectButton onClick={connectHandler}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { CurrencySelectModal } from "components";
 import { Currency } from "types";
@@ -29,18 +29,14 @@ const CurrencySelector = ({ currency, onSelectCurrency }: Props) => {
   const [showCurrencySelectDialog, setShowCurrencySelectDialog] =
     useState<boolean>(false);
 
-  const openSelectDialog = () => {
+  const openSelectDialog = useCallback(() => {
     setShowCurrencySelectDialog(true);
-  };
+  }, []);
 
-  const dismissSelectDialog = () => {
+  const dismissSelectDialog = useCallback(() => {
     setShowCurrencySelectDialog(false);
-    console.log("###");
-  };
+  }, []);
 
-  useEffect(() => {
-    console.log(showCurrencySelectDialog);
-  }, [showCurrencySelectDialog]);
   return (
     <SelectButton onClick={openSelectDialog}>
       {currency && <CurrencySpan>{currency.symbol}</CurrencySpan>}

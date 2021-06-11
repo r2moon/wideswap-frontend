@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 import { Modal } from "components";
 import { ConnectType, useWallet } from "@terra-money/wallet-provider";
@@ -48,10 +49,10 @@ type Props = {
 const ConnectWalletModal = ({ isOpen, onDismiss }: Props) => {
   const { connect } = useWallet();
 
-  const connectWallet = () => {
+  const connectWallet = useCallback(() => {
     connect(ConnectType.CHROME_EXTENSION);
     onDismiss();
-  };
+  }, [connect, onDismiss]);
 
   return (
     <Modal isOpen={isOpen} onDismiss={onDismiss} maxHeight={90}>

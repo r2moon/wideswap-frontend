@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { Modal } from "components";
 import styled from "styled-components";
 import currencies from "constants/currency";
@@ -30,19 +31,31 @@ const HeaderRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const HeaderTitle = styled.span`
+  color: #0222ba;
+  font-size: 20px;
+  font-weight: 700;
 `;
 
 const SearchInputContainer = styled.div`
   display: flex;
+  margin-bottom: 5px;
+  border: 1px solid #0222ba;
+  border-radius: 5px;
+  height: 50px;
+  padding: 0 10px;
 `;
 
 const SearchInput = styled.input`
-  display: flex;
-  align-items: center;
-  background-color: #00aaaa;
+  background-color: transparent;
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
 `;
 
 const CurrenciesContainer = styled.div`
@@ -51,11 +64,12 @@ const CurrenciesContainer = styled.div`
   align-items: center;
   justify-contents: center;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 300px;
 `;
 
 const CurrencyItem = styled.button`
+  background-color: transparent;
   display: flex;
   align-items: center;
   width: 100%;
@@ -74,18 +88,21 @@ const CurrencySelectModal = ({
   onSelectCurrency,
   onDismiss,
 }: Props) => {
-  const selectCurrencyHandler = (currency?: Currency) => {
-    if (currency) {
-      onSelectCurrency(currency);
-      onDismiss();
-    }
-  };
+  const selectCurrencyHandler = useCallback(
+    (currency?: Currency) => {
+      if (currency) {
+        onSelectCurrency(currency);
+        onDismiss();
+      }
+    },
+    [onSelectCurrency, onDismiss]
+  );
 
   return (
     <Modal isOpen={isOpen} onDismiss={onDismiss}>
       <UpperSection>
         <HeaderRow>
-          <span>Select a token</span>
+          <HeaderTitle>Select a token</HeaderTitle>
         </HeaderRow>
         <SearchInputContainer>
           <SearchInput placeholder="Search name or address" />

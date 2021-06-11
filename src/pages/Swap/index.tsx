@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
 import { CurrencyInputPanel } from "components";
 import currencies from "constants/currency";
 import { Currency } from "types";
+
+const HeaderRow = styled.div`
+  margin-bottom: 20px;
+`;
 
 const StyledDiv = styled.div`
   background-color: transparent;
@@ -26,21 +30,48 @@ const SwapDiv = styled.div`
   padding: 20px;
 `;
 
+const ExchangeDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const ExchangeButton = styled.button`
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  border: 1px solid #b5b5b5;
+  padding: 10px 20px;
+  background: transparent;
+  :hover {
+    border-color: #0222ba;
+  }
+`;
+
 const Swap = () => {
   const [offerCurrency, setOfferCurrency] = useState<Currency | undefined>(
     currencies.terraTestnet[0]
   );
   const [askCurrency, setAskCurrency] = useState<Currency | undefined>();
 
+  const exchangeCurrencies = useCallback(() => {
+    setOfferCurrency(askCurrency);
+    setAskCurrency(offerCurrency);
+  }, [offerCurrency, askCurrency]);
+
   return (
     <StyledDiv>
       <SwapDiv>
-        <div>Swap</div>
+        <HeaderRow>Swap</HeaderRow>
         <CurrencyInputPanel
           isOffer
           currency={offerCurrency}
           onSelectCurrency={setOfferCurrency}
+          showFee
         />
+        <ExchangeDiv>
+          <ExchangeButton onClick={exchangeCurrencies}>Exchange</ExchangeButton>
+        </ExchangeDiv>
         <CurrencyInputPanel
           currency={askCurrency}
           onSelectCurrency={setAskCurrency}
