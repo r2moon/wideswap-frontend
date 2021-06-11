@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { CurrencySelector } from "components";
+import currencies from "constants/currency";
+import { Currency } from "types";
 
 const InputPanel = styled.div`
   position: relative;
@@ -28,16 +31,27 @@ const InputRow = styled.div`
   justify-content: space-between;
 `;
 
-const CurrencyInputPanel = () => (
+type Props = {
+  currency?: Currency;
+  isOffer?: boolean;
+  onSelectCurrency: (currency: Currency | undefined) => void;
+};
+
+const CurrencyInputPanel = ({ currency, isOffer, onSelectCurrency }: Props) => (
   <InputPanel>
     <Container>
       <BalanceRow>
-        <div>From</div>
+        <div>{isOffer ? "From" : "To"}</div>
         <div>Balance: 0</div>
       </BalanceRow>
       <InputRow>
         <input placeholder="0.000000" />
-        <div>Balance: 0</div>
+        <div>
+          <CurrencySelector
+            currency={currency}
+            onSelectCurrency={onSelectCurrency}
+          />
+        </div>
       </InputRow>
     </Container>
   </InputPanel>

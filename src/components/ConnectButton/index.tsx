@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { ConnectWalletDialog } from "components";
+import { ConnectWalletModal } from "components";
 import { useAddress } from "hooks";
 import { truncate } from "utils/formatter";
 
@@ -14,14 +14,14 @@ const StyledConnectButton = styled.button`
 const ConnectButton = () => {
   const address = useAddress();
 
-  const [showConnectWalletDialog, setShowConnectWalletDialog] =
+  const [showConnectWalletModal, setShowConnectWalletModal] =
     useState<boolean>(false);
 
   const connectHandler = () => {
     if (address) {
       console.log("connected");
     } else {
-      setShowConnectWalletDialog(true);
+      setShowConnectWalletModal(true);
     }
   };
 
@@ -29,11 +29,10 @@ const ConnectButton = () => {
     <StyledConnectButton onClick={connectHandler}>
       {address && truncate(address)}
       {!address && "Connect Button"}
-      {showConnectWalletDialog && (
-        <ConnectWalletDialog
-          onClose={() => setShowConnectWalletDialog(false)}
-        />
-      )}
+      <ConnectWalletModal
+        isOpen={showConnectWalletModal}
+        onDismiss={() => setShowConnectWalletModal(false)}
+      />
     </StyledConnectButton>
   );
 };

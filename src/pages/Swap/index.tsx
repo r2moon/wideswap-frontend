@@ -1,5 +1,8 @@
-import styled, { ThemeContext } from "styled-components";
+import { useState } from "react";
+import styled from "styled-components";
 import { CurrencyInputPanel } from "components";
+import currencies from "constants/currency";
+import { Currency } from "types";
 
 const StyledDiv = styled.div`
   background-color: rgb(247, 248, 250);
@@ -23,13 +26,28 @@ const SwapDiv = styled.div`
   padding: 20px;
 `;
 
-const Swap = () => (
-  <StyledDiv>
-    <SwapDiv>
-      <div>Swap</div>
-      <CurrencyInputPanel />
-    </SwapDiv>
-  </StyledDiv>
-);
+const Swap = () => {
+  const [offerCurrency, setOfferCurrency] = useState<Currency | undefined>(
+    currencies.terraTestnet[0]
+  );
+  const [askCurrency, setAskCurrency] = useState<Currency | undefined>();
+
+  return (
+    <StyledDiv>
+      <SwapDiv>
+        <div>Swap</div>
+        <CurrencyInputPanel
+          isOffer
+          currency={offerCurrency}
+          onSelectCurrency={setOfferCurrency}
+        />
+        <CurrencyInputPanel
+          currency={askCurrency}
+          onSelectCurrency={setAskCurrency}
+        />
+      </SwapDiv>
+    </StyledDiv>
+  );
+};
 
 export default Swap;
