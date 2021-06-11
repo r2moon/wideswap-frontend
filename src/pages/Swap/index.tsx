@@ -5,7 +5,7 @@ import currencies from "constants/currency";
 import { Currency } from "types";
 
 const StyledDiv = styled.div`
-  background-color: rgb(247, 248, 250);
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: rgb(247, 248, 250);
+  background-color: #0222ba;
 `;
 
 export default Container;

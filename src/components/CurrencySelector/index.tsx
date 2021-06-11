@@ -4,10 +4,20 @@ import { SelectCurrencyModal } from "components";
 import { Currency } from "types";
 
 const SelectButton = styled.button`
-  border: 1px solid red;
-  height: 40px;
+  border: 0;
   border-radius: 20px;
-  padding: 0 15px;
+  padding: 5px 10px;
+  background: transparent;
+
+  :hover {
+    background: #bbb;
+  }
+`;
+
+const CurrencySpan = styled.span`
+  color: #5c5c5c;
+  font-weight: 600;
+  font-size: 15px;
 `;
 
 type Props = {
@@ -33,8 +43,8 @@ const CurrencySelector = ({ currency, onSelectCurrency }: Props) => {
   }, [showCurrencySelectDialog]);
   return (
     <SelectButton onClick={openSelectDialog}>
-      {currency && currency.symbol}
-      {!currency && "Select a token"}
+      {currency && <CurrencySpan>{currency.symbol}</CurrencySpan>}
+      {!currency && <CurrencySpan>Select a token</CurrencySpan>}
       <SelectCurrencyModal
         isOpen={showCurrencySelectDialog}
         onSelectCurrency={onSelectCurrency}

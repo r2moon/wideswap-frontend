@@ -5,10 +5,12 @@ import { useAddress } from "hooks";
 import { truncate } from "utils/formatter";
 
 const StyledConnectButton = styled.button`
-  border: 1px solid red;
+  border: 1px solid #fff;
   height: 40px;
   border-radius: 20px;
   padding: 0 15px;
+  background-color: transparent;
+  color: #fff;
 `;
 
 const ConnectButton = () => {
