@@ -9,6 +9,13 @@ export interface Currency {
   wrappedToken?: Currency;
 }
 
-export interface CurrencyGroup {
-  [network: string]: Currency[];
+export type CurrencyGroup = Record<string, Currency[]>;
+
+export interface TerraNetworkInfo {
+  name: string;
+  chainID: string;
+  lcd: string;
+  mantle: string;
 }
+
+export type NetworkInfo = TerraNetworkInfo;
